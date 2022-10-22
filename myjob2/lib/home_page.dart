@@ -1,5 +1,6 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_interpolation_to_compose_strings, unused_import, sort_child_properties_last
+// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_interpolation_to_compose_strings, unused_import, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/services.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,42 +39,122 @@ class _homepageState extends State<homepage> {
           children: [
             SizedBox(height: 15),
             Text(
-              '\$username is open to work',
-              style: TextStyle(fontSize: 26, color: Colors.purple),
+              'username is open to work',
+              style: TextStyle(
+                fontSize: 26,
+                color: Colors.purple[700],
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 10),
             //SizedBox(width: 50),
             Row(
               children: [
                 SizedBox(width: 40),
-                Text(
-                  'looking for a : Software Engineer roles',
-                  //textAlign: TextAlign.right,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-              ],
-            ),
-            SizedBox(height: 44),
-            Row(
-              children: [
-                SizedBox(width: 30),
-                Column(
+                Row(
                   children: [
-                    Container(
-                      padding:
-                          EdgeInsets.only(left: 322, right: 100, bottom: 132),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey)),
-                      //child: Text(''),
-                    )
+                    Text(
+                      'Looking for a ',
+                      //textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple),
+                    ),
+                    Text(
+                      'Software Engineer ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple),
+                    ),
+                    Text(
+                      'roles',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple),
+                    ),
                   ],
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.all(20),
+            SizedBox(height: 34),
+            Column(
+              children: [
+                Container(
+                  width: 410,
+                  height: 125,
+                  child: SizedBox(
+                      child: Text(
+                    'Hi everyone - I am looking for a new role and would appreciate your support. Thank you in advance for any connections, advice, or opportunities you can offer. #OpenToWork #opportunities #connections',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.deepPurple),
+                  )),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      height: 40,
+                      child: Image.asset(
+                        "icons/email.png",
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Container(
+                      height: 40,
+                      child: Image.asset(
+                        "icons/phone-call.png",
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Container(
+                      height: 40,
+                      child: Image.asset(
+                        "icons/github.png",
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Container(
+                      height: 40,
+                      child: Image.asset(
+                        "icons/linkedin.png",
+                      ),
+                    ),
+                    SizedBox(width: 30),
+                  ],
+                ),
+              ],
             ),
+/*             Row(
+              children: [
+                SizedBox(width: 30),
+                SizedBox(
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 410,
+                        height: 125,
+                        padding:
+                            EdgeInsets.only(left: 322, right: 100, bottom: 132),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.grey)),
+                        child: Text(
+                          'heyyyyyyyyyyyyyyyyyy',
+                          style: TextStyle(fontSize: 55),
+                          //textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ), */
           ],
         ),
         height: 200,
@@ -102,7 +183,7 @@ class _homepageState extends State<homepage> {
         elevation: 0,
         automaticallyImplyLeading: false,
         toolbarHeight: 75,
-        backgroundColor: Colors.deepPurple[300],
+        backgroundColor: Colors.deepPurple[400],
         actions: [
           IconButton(
             //hoverColor: Colors.red,
@@ -121,19 +202,20 @@ class _homepageState extends State<homepage> {
       body: SafeArea(
         child: Container(
           child: LiquidPullToRefresh(
-            color: Colors.deepPurple[300],
+            color: Colors.deepPurple[400],
             height: 250,
             animSpeedFactor: 2.0,
             showChildOpacityTransition: false,
-            backgroundColor: Colors.deepPurple[400],
+            backgroundColor: Colors.deepPurple[500],
             onRefresh: () async {
               return await Future.delayed(Duration(seconds: 1));
             },
             child: ListWheelScrollView(
+              clipBehavior: Clip.antiAlias,
               itemExtent: 340,
               physics: FixedExtentScrollPhysics(),
               perspective: 0.002,
-              //useMagnifier: true,
+              //useMagnifier: false,
               //magnification: 5,
               children: [
                 myposts(),
