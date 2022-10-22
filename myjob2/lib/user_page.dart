@@ -111,7 +111,11 @@ class _userpageState extends State<userpage> {
       ),
       body: SafeArea(
           child: Row(
-        children: [],
+        children: [
+          Flexible(
+              child: Text(
+                  'Hi everyone - I am looking for a new role and would appreciate your support. Thank you in advance for any connections, advice, or opportunities you can offer. #OpenToWork #opportunities #connections'))
+        ],
       )),
     );
   }
