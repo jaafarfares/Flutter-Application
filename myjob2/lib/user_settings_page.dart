@@ -155,10 +155,13 @@ class _usersettingsState extends State<usersettings> {
                   } else if (menu == 2) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => usersettings()),
+                      MaterialPageRoute(builder: (context) => userpage()),
                     );
                   } else if (menu == 3) {
-                    Navigator.pop(context, true);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => mainpage()),
+                    );
                     FirebaseAuth.instance.signOut();
                   }
                 },
@@ -385,7 +388,7 @@ class _usersettingsState extends State<usersettings> {
                               borderSide:
                                   BorderSide(color: Colors.purple, width: 2)))),
                   Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(11),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           //shape: const CircleBorder(),

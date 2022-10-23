@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -141,9 +142,17 @@ class _registerpageState extends State<registerpage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
+                        style: TextStyle(fontSize: 20),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        maxLength: 2,
                         controller: _age,
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Age'),
+                            counterText: '',
+                            border: InputBorder.none,
+                            hintText: 'Age'),
                       ),
                     ),
                   ),
@@ -159,9 +168,17 @@ class _registerpageState extends State<registerpage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: TextField(
+                        style: TextStyle(fontSize: 20),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        maxLength: 8,
                         controller: _phonenumber,
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Phone Number'),
+                            counterText: '',
+                            border: InputBorder.none,
+                            hintText: 'Phone Number'),
                       ),
                     ),
                   ),

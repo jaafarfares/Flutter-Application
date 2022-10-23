@@ -1,6 +1,6 @@
 // ignore_for_file: camel_case_types, prefer_const_constructors, prefer_interpolation_to_compose_strings, unused_import, sort_child_properties_last, prefer_const_literals_to_create_immutables
-
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
+import 'package:like_button/like_button.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,6 +30,7 @@ Future getdocid() async {
 
 class _homepageState extends State<homepage> {
   final user = FirebaseAuth.instance.currentUser!;
+  late String myname;
 
   Padding myposts() {
     return Padding(
@@ -81,23 +82,26 @@ class _homepageState extends State<homepage> {
             ),
             SizedBox(height: 34),
             Column(
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
                   width: 410,
                   height: 125,
                   child: SizedBox(
-                      child: Text(
-                    'Hi everyone - I am looking for a new role and would appreciate your support. Thank you in advance for any connections, advice, or opportunities you can offer. #OpenToWork #opportunities #connections',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.deepPurple),
-                  )),
+                    child: Text(
+                      'Hi everyone - I am looking for a new role and would appreciate your support. Thank you in advance for any connections, advice, or opportunities you can offer. #OpenToWork #opportunities #connections',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.deepPurple),
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    SizedBox(width: 150),
                     Container(
                       height: 40,
                       child: Image.asset(
@@ -176,8 +180,8 @@ class _homepageState extends State<homepage> {
       backgroundColor: Colors.deepPurple[100],
       appBar: AppBar(
         title: Text(
-          'Gob Offers',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          'Gob Offers for ' + user.email!,
+          //    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         elevation: 0,
@@ -185,16 +189,27 @@ class _homepageState extends State<homepage> {
         toolbarHeight: 75,
         backgroundColor: Colors.deepPurple[400],
         actions: [
-          IconButton(
-            //hoverColor: Colors.red,
-            //focusColor: Colors.blue,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => userpage()),
-              );
+          MouseRegion(
+            onHover: (s) {
+              setState(() {
+                'Mouse hovering on region';
+              });
             },
-            icon: Icon(Icons.person), iconSize: 33,
+            child: Tooltip(
+              message: 'My Profil',
+              child: IconButton(
+                hoverColor: Colors.red,
+                focusColor: Colors.blue,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => userpage()),
+                  );
+                },
+                icon: Icon(Icons.person),
+                iconSize: 33,
+              ),
+            ),
           ),
           SizedBox(width: 10)
         ],
@@ -214,10 +229,17 @@ class _homepageState extends State<homepage> {
               clipBehavior: Clip.antiAlias,
               itemExtent: 340,
               physics: FixedExtentScrollPhysics(),
-              perspective: 0.002,
+              perspective: 0.003,
               //useMagnifier: false,
               //magnification: 5,
               children: [
+                myposts(),
+                myposts(),
+                myposts(),
+                myposts(),
+                myposts(),
+                myposts(),
+                myposts(),
                 myposts(),
                 myposts(),
                 myposts(),
@@ -258,22 +280,26 @@ class _homepageState extends State<homepage> {
                   },
                   color: Colors.deepPurple,
                   child: Text('sign out'),
-                ),
-                Expanded(
-                  child: FutureBuilder(
-                    future: getdocid(),
-                    builder: ((context, snapshot) {
-                      return ListView.builder(
-                        itemCount: docid.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: getusername(documentid: docid[index]),
+                ),*/
+                Column(
+                  children: [
+                    Expanded(
+                      child: FutureBuilder(
+                        future: getdocid(),
+                        builder: ((context, snapshot) {
+                          return ListView.builder(
+                            itemCount: 1,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: getusername(documentid: docid[index]),
+                              );
+                            },
                           );
-                        },
-                      );
-                    }),
-                  ),
-                ), */
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -281,4 +307,20 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
+
+/*   _fetch() async {
+    final firebaseuser = await FirebaseAuth.instance.currentUser!;
+    if (firebaseuser != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .document(firebaseuser.uid)
+          .get()
+          .then((ds) {
+        myname = ds.data['fullname'];
+        print(myname);
+      }).catchError((e) {
+        print(e);
+      });
+    }
+  } */
 }
