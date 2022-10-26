@@ -17,7 +17,7 @@ class getusername extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
             return Text(
-              '${data['age']}',
+              '${data['fullname']}',
               style: TextStyle(fontSize: 33, color: Colors.purple),
             );
           }

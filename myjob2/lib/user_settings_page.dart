@@ -397,7 +397,7 @@ class _usersettingsState extends State<usersettings> {
                         onPressed: () {
                           FirebaseFirestore.instance.collection('users').add({
                             'fullname': _username,
-                            'phone number': _number,
+                            'phone number': _number, 
                             'linkden': _linkden,
                             'description': _description,
                             'githuub': _github,

@@ -211,7 +211,7 @@ class _homepageState extends State<homepage> {
               ),
             ),
           ),
-          SizedBox(width: 10)
+          SizedBox(width: 10),
         ],
       ),
       body: SafeArea(
@@ -229,7 +229,7 @@ class _homepageState extends State<homepage> {
               clipBehavior: Clip.antiAlias,
               itemExtent: 340,
               physics: FixedExtentScrollPhysics(),
-              perspective: 0.003,
+              perspective: 0.002,
               //useMagnifier: false,
               //magnification: 5,
               children: [
@@ -288,7 +288,7 @@ class _homepageState extends State<homepage> {
                         future: getdocid(),
                         builder: ((context, snapshot) {
                           return ListView.builder(
-                            itemCount: 1,
+                            itemCount: docid.length,
                             itemBuilder: (context, index) {
                               return ListTile(
                                 title: getusername(documentid: docid[index]),
