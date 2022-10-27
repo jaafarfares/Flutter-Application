@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +55,8 @@ class _forgotpasswordpageState extends State<forgotpasswordpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple[200],
+        toolbarHeight: 73,
+        backgroundColor: Colors.deepPurple[400],
         elevation: 0,
       ),
       body: Column(
@@ -64,33 +65,39 @@ class _forgotpasswordpageState extends State<forgotpasswordpage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Text(
-              'enter your Email and we will send a reset link',
+              '',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
             ),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 44),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Container(
+              height: 62,
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   border: Border.all(color: Colors.white),
                   borderRadius: BorderRadius.circular(12)),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
                 child: TextField(
                   controller: _email,
                   decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Email'),
+                      hintStyle: TextStyle(fontSize: 19),
+                      border: InputBorder.none,
+                      hintText:
+                          'Enter Your Email And we will send you a reset link'),
                 ),
               ),
             ),
           ),
+          SizedBox(height: 11),
           MaterialButton(
             onPressed: passwordreset,
-            child: Text('Reset Password'),
-            color: Colors.deepPurple[200],
+            child: Text('Reset Password',
+                style: TextStyle(color: Colors.white, fontSize: 18)),
+            color: Colors.deepPurple[400],
           ),
         ],
       ),

@@ -75,7 +75,7 @@ class _usersettingsState extends State<usersettings> {
           automaticallyImplyLeading: false,
           toolbarHeight: 90,
           centerTitle: true,
-          backgroundColor: Colors.deepPurple[200],
+          backgroundColor: Colors.deepPurple[400],
           title: Text(
             'Edit your profile her',
             style: TextStyle(
@@ -387,37 +387,43 @@ class _usersettingsState extends State<usersettings> {
                                   BorderRadius.all(Radius.circular(15)),
                               borderSide:
                                   BorderSide(color: Colors.purple, width: 2)))),
+                  SizedBox(height: 10),
                   Padding(
-                    padding: const EdgeInsets.all(11),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          //shape: const CircleBorder(),
-                          backgroundColor: Colors.deepPurple[200],
-                        ),
-                        onPressed: () {
-                          FirebaseFirestore.instance.collection('users').add({
-                            'fullname': _username,
-                            'phone number': _number, 
-                            'linkden': _linkden,
-                            'description': _description,
-                            'githuub': _github,
-                            'email': _email,
-                            'age': _age,
-                            'profession': _profession,
-                          });
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => userpage()),
-                          );
-                        },
-                        child: const Text(
-                          'Save',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
+                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    child: GestureDetector(
+                      onTap: () {
+                        FirebaseFirestore.instance.collection('users').add({
+                          'fullname': _username,
+                          'phone number': _number,
+                          'linkden': _linkden,
+                          'description': _description,
+                          'githuub': _github,
+                          'email': _email,
+                          'age': _age,
+                          'profession': _profession,
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => userpage()),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(17),
+                        decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 70),
                 ],

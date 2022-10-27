@@ -40,17 +40,29 @@ class _registerpageState extends State<registerpage> {
   }
 
   Future signup() async {
-    if (passwordconfirm()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _email.text.trim(),
-        password: _password.text.trim(),
-      );
-      adduserdetails(
-        _fullname.text.trim(),
-        _email.text.trim(),
-        _profession.text.trim(),
-        int.parse(_age.text.trim()),
-        int.parse(_phonenumber.text.trim()),
+    try {
+      if (passwordconfirm()) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _email.text.trim(),
+          password: _password.text.trim(),
+        );
+        adduserdetails(
+          _fullname.text.trim(),
+          _email.text.trim(),
+          _profession.text.trim(),
+          int.parse(_age.text.trim()),
+          int.parse(_phonenumber.text.trim()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        },
       );
     }
   }
@@ -59,6 +71,18 @@ class _registerpageState extends State<registerpage> {
     if (_password.text.trim() == _confirmpassword.text.trim()) {
       return true;
     } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(
+              "check your password",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+            ),
+          );
+        },
+      );
+
       return false;
     }
   }
@@ -70,13 +94,25 @@ class _registerpageState extends State<registerpage> {
     int age,
     int phonenumber,
   ) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'fullname': fullname,
-      'email': email,
-      'profession': profession,
-      'age': age,
-      'phone number': phonenumber,
-    });
+    try {
+      await FirebaseFirestore.instance.collection('users').add({
+        'fullname': fullname,
+        'email': email,
+        'profession': profession,
+        'age': age,
+        'phone number': phonenumber,
+      });
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        },
+      );
+    }
   }
 
   @override

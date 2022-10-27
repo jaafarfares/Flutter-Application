@@ -48,7 +48,6 @@ class _homepageState extends State<homepage> {
               ),
             ),
             SizedBox(height: 10),
-            //SizedBox(width: 50),
             Row(
               children: [
                 SizedBox(width: 40),
@@ -56,7 +55,6 @@ class _homepageState extends State<homepage> {
                   children: [
                     Text(
                       'Looking for a ',
-                      //textAlign: TextAlign.right,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -82,7 +80,6 @@ class _homepageState extends State<homepage> {
             ),
             SizedBox(height: 34),
             Column(
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
                   width: 410,
@@ -134,31 +131,6 @@ class _homepageState extends State<homepage> {
                 ),
               ],
             ),
-/*             Row(
-              children: [
-                SizedBox(width: 30),
-                SizedBox(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 410,
-                        height: 125,
-                        padding:
-                            EdgeInsets.only(left: 322, right: 100, bottom: 132),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.grey)),
-                        child: Text(
-                          'heyyyyyyyyyyyyyyyyyy',
-                          style: TextStyle(fontSize: 55),
-                          //textAlign: TextAlign.right,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ), */
           ],
         ),
         height: 200,
@@ -230,8 +202,6 @@ class _homepageState extends State<homepage> {
               itemExtent: 340,
               physics: FixedExtentScrollPhysics(),
               perspective: 0.002,
-              //useMagnifier: false,
-              //magnification: 5,
               children: [
                 myposts(),
                 myposts(),
@@ -251,37 +221,7 @@ class _homepageState extends State<homepage> {
                 myposts(),
                 myposts(),
 
-                /*               Row(children: [
-                  SizedBox(width: 470),
-                  IconButton(
-                    //hoverColor: Colors.red,
-                    //focusColor: Colors.blue,
-          
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => userpage()),
-                      );
-                    },
-                    icon: Icon(Icons.person), iconSize: 33,
-                  ),
-                ]),
-                //SizedBox(height: 377),
-                Text(
-                  textAlign: TextAlign.center,
-                  'Welcome ' + user.email!,
-                  style: TextStyle(fontSize: 33),
-                ),
-          
-                SizedBox(height: 22),
-                MaterialButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                  color: Colors.deepPurple,
-                  child: Text('sign out'),
-                ),*/
-                Column(
+/*                 Column(
                   children: [
                     Expanded(
                       child: FutureBuilder(
@@ -299,7 +239,7 @@ class _homepageState extends State<homepage> {
                       ),
                     ),
                   ],
-                ),
+                ), */
               ],
             ),
           ),

@@ -13,6 +13,7 @@ class loginpage extends StatefulWidget {
 }
 
 class _loginpage extends State<loginpage> {
+  bool showProgress = false;
   final _email = TextEditingController();
   final _password = TextEditingController();
 
@@ -26,9 +27,22 @@ class _loginpage extends State<loginpage> {
         ));
       },
     );
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _email.text.trim(), password: _password.text.trim());
-    Navigator.of(context).pop();
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _email.text.trim(), password: _password.text.trim());
+      Navigator.of(context).pop();
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString(),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23)),
+          );
+        },
+      );
+    }
   }
 
   @override
